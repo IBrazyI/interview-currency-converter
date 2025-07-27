@@ -1,5 +1,9 @@
 <div>
+  <label for="fromCurrenyValueInput">
+    shortcode
+  </label>
   <input
+    id="fromCurrenyValueInput"
     type="number"
     [(ngModel)]="currencyValueToConvert"
     (ngModelChange)="onCurrencyValueToConvertChange($event)"
@@ -7,7 +11,11 @@
   />
 </div>
 <div>
+  <label for="toCurrencyValueInput">
+    shortcode
+  </label>
   <input
+    id="toCurrencyValueInput"
     type="number"
     [value]="convertedCurrencyValue"
     readonly

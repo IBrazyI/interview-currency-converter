@@ -1,0 +1,16 @@
+<div class="base-widget">
+    <div class="base-widget-header">
+        <h1>Angualr Currency Converter</h1>
+        <h2>Using Currency beacon</h2>
+    </div>
+    <div class="currency-convertion-container">
+        <app-currency-selector-dropdown
+            (selectedValueFromChanged)="onSelectedValueFromChanged($event)"
+            (selectedValueToChanged)="onSelectedValueToChanged($event)">
+        </app-currency-selector-dropdown>
+        <app-currency-value-textbox 
+            [convertedCurrencyValue]="convertedCurrency"
+            (currencyValueToConvertChanged)="onCurrencyValueToConvertChanged($event)">
+        </app-currency-value-textbox>
+    </div>
+</div>
