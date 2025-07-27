@@ -1,0 +1,15 @@
+<div>
+  <label for="dropdown-currency-from">Select an item:</label>
+  <select id="dropdown-currency-from" [(ngModel)]="selectedValueFrom">
+    <option value="" disabled selected>Select...</option>
+    <option *ngFor="let item of dataArrayFrom" [value]="item.id">{{ item.name }}</option>
+  </select>
+</div>
+
+<div>
+  <label for="dropdown-currency-to">Select an item:</label>
+  <select id="dropdown-currency-to" [(ngModel)]="selectedValueTo">
+    <option value="" disabled selected>Select...</option>
+    <option *ngFor="let item of dataArrayTo" [value]="item.id">{{ item.name }}</option>
+  </select>
+</div>
