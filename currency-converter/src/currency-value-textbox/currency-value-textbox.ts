@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 @Component({
@@ -8,13 +8,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './currency-value-textbox.scss'
 })
 export class CurrencyValueTextbox {
+  @Input() convertedCurrencyValue: number = 0;
   currencyValueToConvert: string = '';
-  convertedCurrencyValue: string = '';
 
    @Output() currencyValueToConvertChanged = new EventEmitter<string>();
 
    onCurrencyValueToConvertChange(value: string) {
     this.currencyValueToConvertChanged.emit(value);
-    console.log('Currency Value To Convert:', value);
    }
 }

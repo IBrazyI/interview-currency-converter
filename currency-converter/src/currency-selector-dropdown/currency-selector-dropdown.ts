@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { CurrencySelection } from '../app/services/currency-selection/currency-selection';
@@ -29,7 +29,11 @@ export class CurrencySelectorDropdown implements OnInit {
         const currencies = Object.entries(data)
         .map(([id, details]: [string, any]) => ({
           id,
-          name: details.name || id // fallback to id if name is missing
+          name: details.name || id, //Fall back to sort by id if there is no name (This stops a localeCompare error)
+          short_code: details.short_code, //We specifially want the short_code as it is required for the convert API (Not mentioned in documenation)
+          symbol: details.symbol
+
+
         }))
         .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -42,6 +46,16 @@ export class CurrencySelectorDropdown implements OnInit {
     );
   }
 
+  @Output() selectedValueFromChanged = new EventEmitter<string>();
+  @Output() selectedValueToChanged = new EventEmitter<string>();
+
+  onSelectedValueFromChange(value: string) {
+    this.selectedValueFromChanged.emit(value);
+  };
+
+  onSelectedValueToChange(value: string) {
+    this.selectedValueToChanged.emit(value);
+  };
 
 }
 
