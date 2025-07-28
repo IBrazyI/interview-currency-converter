@@ -42,12 +42,16 @@ export class BaseWidget {
     } else {
       this.valueToConvert = 0; // Reset the converted currency if input is cleared
       this.convertedCurrency = 0; // Reset the converted currency
-      this.convertedCurrencyUpdated.emit(0); // Optionally emit 0 to update the
+      this.convertedCurrencyUpdated.emit(0); // Optionally emit 0 to update textbox
     }
   }
 
   @Output() convertedCurrencyUpdated = new EventEmitter<number>();
 
+  /**
+   * Converts the currency based on the selected currencies and input value.
+   * @returns {number} - The converted currency value.
+   */
   convertCurrency() {
     if (this.fromCurrency?.short_code && this.toCurrency?.short_code && this.valueToConvert) {
       this.apiService.convertCurrency(this.fromCurrency.short_code, this.toCurrency.short_code, this.valueToConvert).subscribe(
@@ -71,7 +75,6 @@ export class BaseWidget {
 }
 
 //TODO
-//STYLING
 //document how to run on another machine
 
 
