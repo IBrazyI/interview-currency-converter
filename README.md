@@ -9,8 +9,6 @@ This is a simple to use currency converter with minmal styling to reduce develop
 ## Getting the project working
 - First navigate to the gitHub repository.
 - Click the "Code" button and see the following popup.
-![alt text](read-me-step-1.png)
-
 - Make sure HTTPS is selected and click the copy icon to copy the URL to the clipboard.
 ![alt text](read-me-step-2.png)
 - Navigate to the code editor and open up the intergrated terminal.
