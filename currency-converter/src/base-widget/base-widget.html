@@ -1,7 +1,9 @@
 <div class="base-widget">
     <div class="base-widget-header">
-        <h1>Angualr Currency Converter</h1>
-        <h2>Using Currency beacon</h2>
+        <div class="headers">
+            <h1>Angular Currency Converter</h1>
+            <h2>Using Currency beacon</h2>
+        </div>
     </div>
     <div class="currency-convertion-container">
         <app-currency-selector-dropdown
@@ -10,6 +12,8 @@
         </app-currency-selector-dropdown>
         <app-currency-value-textbox 
             [convertedCurrencyValue]="convertedCurrency"
+            [fromShortCode]="fromCurrency?.short_code"
+            [toShortCode]="toCurrency?.short_code"
             (currencyValueToConvertChanged)="onCurrencyValueToConvertChanged($event)">
         </app-currency-value-textbox>
     </div>

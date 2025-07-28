@@ -8,12 +8,21 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './currency-value-textbox.scss'
 })
 export class CurrencyValueTextbox {
-  @Input() convertedCurrencyValue: number = 0;
+  @Input() convertedCurrencyValue: string = '';
+  @Input() fromShortCode: string = '';
+  @Input() toShortCode: string = '';
+
   currencyValueToConvert: string = '';
 
-   @Output() currencyValueToConvertChanged = new EventEmitter<string>();
+  @Output() currencyValueToConvertChanged = new EventEmitter<string>();
 
-   onCurrencyValueToConvertChange(value: string) {
-    this.currencyValueToConvertChanged.emit(value);
-   }
+  onCurrencyValueToConvertChange(value: string) {
+    // Convert to float and fix to 2 decimal places
+    const valueToFloat = Number.parseFloat(value);
+    const fixedValue = isNaN(valueToFloat) ? '0.00' : valueToFloat.toFixed(2);
+    this.currencyValueToConvert = fixedValue; // Update the model so the input re-renders
+    this.currencyValueToConvertChanged.emit(this.currencyValueToConvert);
+  }
+
+
 }

@@ -3,6 +3,41 @@
     width: 100vw;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: aquamarine;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .base-widget-header {
+        display: flex;
+        width: 800px;
+        margin-left: 50px;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #555;
+        }
+    }
+
+    .currency-convertion-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        margin-top: 2rem;
+        app-currency-selector-dropdown {
+            margin-right: 48px;
+        }
+    }
+
+    app-currency-value-textbox {
+        margin-top: 20px;
+        width: 400px;
+    }
 }

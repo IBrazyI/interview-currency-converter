@@ -1,24 +1,14 @@
 <div>
+  <input id="fromCurrenyValueInput" type="decimal" step="0.01" min="0" pattern="[0-9]*[.,]?[0-9]*" inputmode="decimal"
+    [(ngModel)]="currencyValueToConvert" (ngModelChange)="onCurrencyValueToConvertChange($event)" placeholder="0.00" />
   <label for="fromCurrenyValueInput">
-    shortcode
+    {{ fromShortCode || "" }}
   </label>
-  <input
-    id="fromCurrenyValueInput"
-    type="number"
-    [(ngModel)]="currencyValueToConvert"
-    (ngModelChange)="onCurrencyValueToConvertChange($event)"
-    placeholder="Enter currency value"
-  />
 </div>
 <div>
+  <input id="toCurrencyValueInput" type="number" step="0.01" min="0" pattern="[0-9]*[.,]?[0-9]*" inputmode="decimal"
+    [value]="convertedCurrencyValue" readonly placeholder="0.00" />
   <label for="toCurrencyValueInput">
-    shortcode
+    {{ toShortCode || "" }}
   </label>
-  <input
-    id="toCurrencyValueInput"
-    type="number"
-    [value]="convertedCurrencyValue"
-    readonly
-    placeholder="Converted currency value"
-  />
 </div>

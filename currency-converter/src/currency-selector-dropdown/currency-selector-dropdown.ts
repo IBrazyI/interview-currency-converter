@@ -14,10 +14,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class CurrencySelectorDropdown implements OnInit {
 
-  dataArrayFrom: any[] = [];  // To store the API for the from dropdown
-  dataArrayTo: any[] = [];    // To store the API for the to dropdown
-  selectedValueFrom: string = '';  // For storing selected dropdown value
-  selectedValueTo: string = '';    // For storing selected dropdown value
+  dataArrayFrom: any[] = [];
+  dataArrayTo: any[] = [];
+  selectedValueFrom: string = '';
+  selectedValueTo: string = '';
 
   constructor(private apiService: CurrencySelection) {}
 
@@ -32,10 +32,8 @@ export class CurrencySelectorDropdown implements OnInit {
           name: details.name || id, //Fall back to sort by id if there is no name (This stops a localeCompare error)
           short_code: details.short_code, //We specifially want the short_code as it is required for the convert API (Not mentioned in documenation)
           symbol: details.symbol
-
-
         }))
-        .sort((a, b) => a.name.localeCompare(b.name));
+        .sort((baseCurrency, compareCurrency) => baseCurrency.name.localeCompare(compareCurrency.name));
 
         this.dataArrayFrom = Object.values(currencies);
         this.dataArrayTo = Object.values(currencies);
@@ -46,16 +44,19 @@ export class CurrencySelectorDropdown implements OnInit {
     );
   }
 
-  @Output() selectedValueFromChanged = new EventEmitter<string>();
-  @Output() selectedValueToChanged = new EventEmitter<string>();
+@Output() selectedValueFromChanged = new EventEmitter<any>();
+@Output() selectedValueToChanged = new EventEmitter<any>();
 
-  onSelectedValueFromChange(value: string) {
-    this.selectedValueFromChanged.emit(value);
-  };
+onSelectedValueFromChange(short_code: string) {
+  const selectedItem = this.dataArrayFrom.find(item => item.short_code === short_code);
+  this.selectedValueFromChanged.emit(selectedItem);
+}
 
-  onSelectedValueToChange(value: string) {
-    this.selectedValueToChanged.emit(value);
-  };
+onSelectedValueToChange(short_code: string) {
+  const selectedItem = this.dataArrayTo.find(item => item.short_code === short_code);
+  this.selectedValueToChanged.emit(selectedItem);
+}
+
 
 }
 
